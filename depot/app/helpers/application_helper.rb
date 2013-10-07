@@ -7,4 +7,8 @@
 # Visit http://www.pragmaticprogrammer.com/titles/rails4 for more book information.
 #---
 module ApplicationHelper
+  
+  def get_date()
+    @var = Time.now.strftime("%B %e, %Y at %I:%M %p");
+  end
 end
