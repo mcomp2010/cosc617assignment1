@@ -14,6 +14,17 @@
         <dd><%= truncate(strip_tags(product.description),
                length: 80) %></dd>
       </dl>
+
+      <p>
+        <strong>Instore Stock:</strong>
+        <%= product.stock_instore %>
+      </p>
+
+
+      <p>
+        <strong>Online Stock:</strong>
+        <%= product.stock_online %>
+      </p>
     </td>
 
     <td class="list_actions">

@@ -9,5 +9,14 @@
 class StoreController < ApplicationController
   def index
     @products = Product.order(:title)
+
+
+    if session[:counter].nil?
+      session[:counter] = 1
+    else
+      current_count = session[:counter].to_f
+      current_count += 1
+      session[:counter] = current_count
+    end
   end
 end

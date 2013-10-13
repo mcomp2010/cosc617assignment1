@@ -2,22 +2,38 @@
 <p id="notice"><%= notice %></p>
 <% end %>
 
+<% if session[:counter].to_f > 5.0 %>
+    Session Count :<%= session[:counter] %>
+<% end %>
+
 <h1>Your Pragmatic Catalog</h1>
 
 <% cache ['store', Product.latest] do %>
   <% @products.each do |product| %>
     <% cache ['entry', product] do %>
+     <% if not (product.stock_online == '0' and product.stock_instore == '0') %>
       <div class="entry">
-        <%= image_tag(product.image_url) %>
-        <h3><%= product.title %></h3>
-        <%= sanitize(product.description) %>
-        <div class="price_line">
-          <span class="price"><%= number_to_currency(product.price) %></span>
-<!-- START_HIGHLIGHT -->
-          <%= button_to 'Add to Cart', line_items_path(product_id: product) %>
-<!-- END_HIGHLIGHT -->
-        </div>
+
+            <%= image_tag(product.image_url) %>
+            <h3><%= product.title %></h3>
+            <%= sanitize(product.description) %>
+            <div class="price_line">
+              <span class="price"><%= number_to_currency(product.price) %></span>
+              <!-- START_HIGHLIGHT -->
+              <%= button_to 'Add to Cart', line_items_path(product_id: product) %>
+              <!-- END_HIGHLIGHT -->
+
+              <% if (product.stock_online == '0') %>
+                  <span class="price">Available in-store only</span>
+              <% end %>
+
+              <% if (product.stock_instore == '0') %>
+                  <span class="price"> Available online only</span>
+              <% end %>
+
+            </div>
       </div>
+     <% end %>
     <% end %>
   <% end %>
 <% end %>

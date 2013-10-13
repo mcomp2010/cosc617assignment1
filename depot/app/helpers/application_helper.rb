@@ -8,15 +8,12 @@
 #---
 module ApplicationHelper
 
-
   def get_date()
     @var = Time.now.strftime("%B %e, %Y at %I:%M %p")
   end
 
 
   def count()
-
-
     if cookies[:init_date].nil?
       cookies[:init_date] = Time.now.strftime("%B %e, %Y at %I:%M %p")
     else

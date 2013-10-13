@@ -20,5 +20,16 @@
   <%= @product.price %>
 </p>
 
+<p>
+  <strong>Instore Stock:</strong>
+  <%= @product.stock_instore %>
+</p>
+
+
+<p>
+  <strong>Online Stock:</strong>
+  <%= @product.stock_online %>
+</p>
+
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
